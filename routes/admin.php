@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +17,34 @@ use Illuminate\Support\Facades\Route;
 
 //NOT THAT THE PREFIX IS /admin for all amdin
 
-Route::group(['namespace'=>'Dashboard','middleware'=> 'auth:admin'],function (){
-    Route::get('/','DashboardController@index')->name('admin.dashboard');
-});
+Route::group(['prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
 
-########################### BEGIN AUTH ############################################
-Route::group(['namespace'=>'Dashboard\Auth','middleware'=>'guest:admin'],function(){
-    Route::get('login', 'LoginController@login')->name('admin.login');
-    Route::post('login', 'LoginController@processLogin')->name('process.login');
+    Route::group(['namespace'=>'Dashboard','middleware'=> 'auth:admin','prefix'=>'admin'],function (){
+        Route::get('/','DashboardController@index')->name('admin.dashboard');
+
+        ################## SETTINGS
+        Route::group(['prefix'=>'settings'], function (){
+           Route::get('shipping-methods/{type}','SettingsController@editShippingMethods')->name('edit.shippings.methods');
+           Route::put('shipping-methods/{type}','SettingsController@updateShippingMethods')->name('update.shippings.methods');
+        });
+    });
+
+
+
+
+
+
+
+    ########################### BEGIN AUTH ############################################
+    Route::group(['namespace'=>'Dashboard\Auth','middleware'=>'guest:admin','prefix'=>'admin'],function(){
+        Route::get('login', 'LoginController@login')->name('admin.login');
+        Route::post('login', 'LoginController@processLogin')->name('process.login');
+    });
+    ########################### END AUTH ############################################
+
+
 });
-########################### END AUTH ############################################
 
 
 

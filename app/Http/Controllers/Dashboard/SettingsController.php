@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ShippingsRequest;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SettingsController extends Controller
 {
@@ -16,6 +18,7 @@ class SettingsController extends Controller
         //with this package of transaltion, no need for making relations its auto
         //return Setting::all();
 
+
         if ($type === 'free') {
             $shippings = Setting::where('key', 'free_shipping_label')->first();
         }elseif ($type === 'inner') {
@@ -26,12 +29,34 @@ class SettingsController extends Controller
             $shippings = Setting::where('key', 'free_shipping_label')->first();
         }
 
+
         return view('dashboard.settings.shippings.edit',compact('shippings'));
 
     }
 
 
-    public function updateShippingMethods($id){
+    public function updateShippingMethods(ShippingsRequest $request,$id){
+        //validation
+        //update
+        try {
 
+
+        $shipping_method = Setting::find($id);
+
+        DB::beginTransaction();
+        //update plain_value
+        $shipping_method->update(['plain_value' => $request->plain_value]);
+        //save translations with default value of value
+        $shipping_method->value = $request->value;
+        $shipping_method->save();
+        DB::commit();
+        return back()->with(['success'=>'  تم التحديث بنجاح']);
+
+
+        }catch (\Exception $ex){
+            return back()->with(['error'=>'  هنالك خطاء ما']);
+            DB::rollBack();
+
+        }
     }
 }

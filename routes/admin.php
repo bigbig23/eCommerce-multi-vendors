@@ -28,6 +28,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
            Route::get('shipping-methods/{type}','SettingsController@editShippingMethods')->name('edit.shippings.methods');
            Route::put('shipping-methods/{type}','SettingsController@updateShippingMethods')->name('update.shippings.methods');
         });
+
+
     });
 
 
@@ -40,7 +42,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::group(['namespace'=>'Dashboard\Auth','middleware'=>'guest:admin','prefix'=>'admin'],function(){
         Route::get('login', 'LoginController@login')->name('admin.login');
         Route::post('login', 'LoginController@processLogin')->name('process.login');
+        //Route::get('logout', 'LoginController@logout')->name('admin.logout');
+
     });
+
+   Route::get('logout', 'Dashboard\Auth\LoginController@logout')->name('admin.logout');
     ########################### END AUTH ############################################
 
 

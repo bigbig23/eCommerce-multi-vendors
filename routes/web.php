@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/test-layout', function () {
-    return view('layouts.admin');
+Route::get('/test', function () {
+    $cat = \App\Models\Category::first();
+    $cat->makeVisible(['translations']);
+    return $cat;
+
 });
 
 

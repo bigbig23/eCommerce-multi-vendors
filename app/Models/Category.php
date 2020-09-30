@@ -36,4 +36,8 @@ class Category extends Model
         return $this->is_active == 1 ? 'مغعل' : 'غير مفعل';
     }
 
+    public function _parent(){
+        return $this->belongsTo(self::class,'parent_id');
+    }
+
 }

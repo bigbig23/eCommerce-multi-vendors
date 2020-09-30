@@ -48,7 +48,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
             //Route::get('delete/{id}','MainCategoryController@destroy')->name('admin.maincategories.delete');
             Route::delete('delete/{id}','MainCategoryController@destroy')->name('admin.maincategories.delete');
          });
-####################### End Main Categories ####################################################
+
         ############################### Begin Main Categories ##################################################
         Route::group(['prefix'=>'sub_categories'],function (){
             Route::get('/','SubCategoryController@index')->name('admin.subcategories');
@@ -59,10 +59,19 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
             //Route::get('delete/{id}','SubCategoryController@destroy')->name('admin.subcategories.delete');
             Route::delete('delete/{id}','SubCategoryController@destroy')->name('admin.subcategories.delete');
         });
-####################### End Main Categories ####################################################
-
         ############################################## End Categories #############################################
 
+        ############################### Begin  Brand ##################################################
+        Route::group(['prefix'=>'brands'],function (){
+            Route::get('/','BrandController@index')->name('admin.brands');
+            Route::get('create','BrandController@create')->name('admin.brands.create');
+            Route::post('store','BrandController@store')->name('admin.brands.store');
+            Route::get('edit/{id}','BrandController@edit')->name('admin.brands.edit');
+            Route::post('update/{id}','BrandController@update')->name('admin.brands.update');
+            //Route::get('delete/{id}','BrandController@destroy')->name('admin.brands.delete');
+            Route::delete('delete/{id}','BrandController@destroy')->name('admin.brands.delete');
+        });
+        ############################################## End Brand #############################################
 
 
     });

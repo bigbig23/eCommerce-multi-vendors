@@ -15,10 +15,9 @@ class CreateBrandTranslationsTable extends Migration
     {
         Schema::create('brand_translations', function (Blueprint $table) {
             $table->id();
-            $table->integer('brand_id')->unsigned();
+            $table->unsignedBigInteger('brand_id')->unsigned();
             $table->string('locale');
             $table->string('name');
-            $table->unique(['brand_id','locale']);
             $table->timestamps();
 
             $table->unique(['brand_id','locale']);

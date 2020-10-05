@@ -69,9 +69,21 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
             Route::get('edit/{id}','BrandController@edit')->name('admin.brands.edit');
             Route::post('update/{id}','BrandController@update')->name('admin.brands.update');
             //Route::get('delete/{id}','BrandController@destroy')->name('admin.brands.delete');
-            Route::delete('delete/{id}','BrandController@destroy')->name('admin.brands.delete');
+            Route::get('delete/{id}','BrandController@destroy')->name('admin.brands.delete');
         });
         ############################################## End Brand #############################################
+
+
+        ############################### Begin  Tag ##################################################
+        Route::group(['prefix'=>'tags'],function (){
+            Route::get('/','TagController@index')->name('admin.tags');
+            Route::get('create','TagController@create')->name('admin.tags.create');
+            Route::post('store','TagController@store')->name('admin.tags.store');
+            Route::get('edit/{id}','TagController@edit')->name('admin.tags.edit');
+            Route::post('update/{id}','TagController@update')->name('admin.tags.update');
+             Route::get('delete/{id}','TagController@destroy')->name('admin.tags.delete');
+        });
+        ############################################## End Tag #############################################
 
 
     });

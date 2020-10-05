@@ -17,20 +17,33 @@ class LoginController extends Controller
     public function processLogin(AdminLoginRequest $request){
         try {
             $remember_me = $request->has('remember_me') ? true : false;
-
             if(Auth::guard('admin')->attempt(['email'=>$request->email, 'password'=>$request->password], $remember_me)){
                 return redirect()->route('admin.dashboard');
-                //return 'hy admin';
-
             }else{
-
                 return redirect()->back()->with('error','هناك خطاء بالبيانات');
             }
         }catch (\Exception $ex){
             return $ex;
         }
-
     }
+
+/*    public function processLogin(Request $request){
+        try {
+            $remember_me = $request->has('remember_me') ? true : false;
+
+            if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password], $remember_me)){
+                return redirect()->route('admin.dashboard');
+                //return 'hy admin';
+
+            }else{
+
+                return redirect()->back()->with('error','Email and Password are not correct !');
+            }
+        }catch (\Exception $ex){
+            return $ex;
+        }
+
+    }*/
 
     public function logout(){
        // return 'loging out';

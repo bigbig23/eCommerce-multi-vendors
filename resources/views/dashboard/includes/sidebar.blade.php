@@ -26,7 +26,7 @@
             <li class="nav-item"><a href=""><i class="la la-group"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">الاقسام الرئيسيه </span>
                     <span
-                        class="badge badge badge-danger badge-pill float-right mr-2">{{ \App\Models\Category::parent()->count() }}</span>
+                        class="badge badge badge-danger badge-pill float-right mr-2">{{ \App\Models\Category::count() }}</span>
                 </a>
                 <ul class="menu-content">
                     <li class="active"><a class="menu-item" href="{{route('admin.maincategories')}}"
@@ -38,7 +38,7 @@
                 </ul>
             </li>
 
-            <li class="nav-item"><a href=""><i class="la la-group"></i>
+          {{--  <li class="nav-item"><a href=""><i class="la la-group"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">الاقسام الفرعية   </span>
                     <span
                         class="badge badge badge-danger badge-pill float-right mr-2">{{\App\Models\Category::child()->count()}}</span>
@@ -51,7 +51,8 @@
                             قسم فرعي جديد </a>
                     </li>
                 </ul>
-            </li>
+            </li>--}}
+
 
             <li class="nav-item"><a href=""><i class="la la-male"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">الماركات التجاريه </span>
@@ -64,6 +65,21 @@
                     </li>
                     <li><a class="menu-item" href="{{route('admin.brands.create')}}" data-i18n="nav.dash.crypto">أضافة
                             ماركه جديده  </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item"><a href=""><i class="la la-male"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main">   العلامات </span>
+                    <span
+                        class="badge badge badge-success badge-pill float-right mr-2">{{\App\Models\Tag::count()}}</span>
+                </a>
+                <ul class="menu-content">
+                    <li class="active"><a class="menu-item" href="{{route('admin.tags')}}"
+                                          data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                    </li>
+                    <li><a class="menu-item" href="{{route('admin.tags.create')}}" data-i18n="nav.dash.crypto">أضافة
+                               </a>
                     </li>
                 </ul>
             </li>

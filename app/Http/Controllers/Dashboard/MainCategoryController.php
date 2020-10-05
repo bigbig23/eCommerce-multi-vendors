@@ -12,36 +12,41 @@ class MainCategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::parent()->orderBy('id','desc')->paginate(PAGINATION_COUNT);
+        $categories = Category::with('_parent')->orderBy('id','desc')->paginate(PAGINATION_COUNT);
          //$categories = Category::child()->orderBy('id','desc')->paginate(PAGINATION_COUNT);
 
         return view('dashboard.categories.index',compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        return view('dashboard.categories.create');
+        $categories = Category::selection()->get();
+        return view('dashboard.categories.create',compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
+
+
     public function store(MainCategoryRequest $request)
     {
+
         try {
             if(!$request->has('is_active')){
                 $request->request->add(['is_active'=>0]);
             }else{
                 $request->request->add(['is_active'=>1]);
             }
+
+            //if user choose main category then we must remove paret id from the request
+
+            if($request -> type == 1) //main category
+            {
+                $request->request->add(['parent_id' => null]);
+            }
+
+            //if he choose child category we mus t add parent id
 
             $category = Category::create($request->except('_token'));
             //Saving translation
@@ -55,12 +60,7 @@ class MainCategoryController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
@@ -78,13 +78,7 @@ class MainCategoryController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(MainCategoryRequest $request, $id)
     {
         //return $request;
@@ -114,12 +108,6 @@ class MainCategoryController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $category = Category::orderBy('id','desc')->find($id);

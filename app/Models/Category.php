@@ -24,6 +24,10 @@ class Category extends Model
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
+    public function scopeSelection($query){
+        return $query->select('id', 'parent_id', 'slug','is_active');
+    }
+
     public function scopeParent($query){
         return $query->whereNull('parent_id');
     }

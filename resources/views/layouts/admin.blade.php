@@ -23,6 +23,12 @@
 
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/plugins/animate/animate.css')}}">
     <!-- BEGIN VENDOR CSS-->
+
+    <!-- BEGING Theme included stylesheets  for text editor-->
+
+    <!-- END Theme included stylesheets  for text editor-->
+
+
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/vendors.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/weather-icons/climacons.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/fonts/meteocons/style.css')}}">
@@ -51,6 +57,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/cryptocoins/cryptocoins.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/extensions/datedropper.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/extensions/timedropper.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/style.css')}}">
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/style-rtl.css')}}">
@@ -80,6 +87,7 @@
 @notify_render
 
 
+
 <!-- BEGIN VENDOR JS-->
 <script src="{{asset('assets/admin/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
 <!-- BEGIN VENDOR JS-->
@@ -96,6 +104,8 @@
 <script src="{{asset('assets/admin/js/scripts/forms/switch.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/vendors/js/forms/select/select2.full.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/js/scripts/forms/select/form-select2.js')}}" type="text/javascript"></script>
+
+
 
 <!-- BEGIN PAGE VENDOR JS-->
 <script src="{{asset('assets/admin/vendors/js/charts/chart.min.js')}}" type="text/javascript"></script>
@@ -115,6 +125,15 @@
 <!-- BEGIN PAGE LEVEL JS-->
 <script src="{{asset('assets/admin/js/scripts/pages/dashboard-crypto.js')}}" type="text/javascript"></script>
 
+<!-- text editor JS-->
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>tinymce.init({selector:'textarea'});</script>
+{{--
+<script src="{{asset('assets/admin/vendors/js/editors/ckeditor/ckeditor.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/admin/js/scripts/editors/editor-ckeditor.js')}}" type="text/javascript"></script>
+--}}
+
+
 
 <script src="{{asset('assets/admin/js/scripts/tables/datatables/datatable-basic.js')}}"
         type="text/javascript"></script>
@@ -124,6 +143,8 @@
 <script src="{{asset('assets/admin/js/scripts/forms/checkbox-radio.js')}}" type="text/javascript"></script>
 
 <script src="{{asset('assets/admin/js/scripts/modal/components-modal.js')}}" type="text/javascript"></script>
+
+
 
 <script>
     $('#meridians1').timeDropper({

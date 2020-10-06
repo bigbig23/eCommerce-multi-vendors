@@ -44,4 +44,8 @@ class Category extends Model
         return $this->belongsTo(self::class,'parent_id');
     }
 
+    public function scopeActive($q){
+        return $q->where('is_active',1);
+    }
+
 }

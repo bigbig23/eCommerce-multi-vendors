@@ -39,6 +39,9 @@ class Brand extends Model
      */
     public $translatedAttributes = ['name'];
 
+    public function scopeActive($q){
+        return $q->where('is_active',1);
+    }
 
 
     public function getActive(){

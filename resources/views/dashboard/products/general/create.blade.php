@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="app-content content">
-        <div class="content-wrapper">
+        <div class="content-wrapper ">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
                     <div class="row breadcrumbs-top">
@@ -20,9 +20,9 @@
                     </div>
                 </div>
             </div>
-            <div class="content-body">
+            <div class="content-body ">
                 <!-- Basic form layout section start -->
-                <section id="basic-form-layouts">
+                <section id="basic-form-layouts ">
                     <div class="row match-height">
                         <div class="col-md-12">
                             <div class="card">
@@ -41,12 +41,12 @@
                                 </div>
                                 @include('dashboard.includes.alerts.success')
                                 @include('dashboard.includes.alerts.errors')
-                                <div class="card-content collapse show">
-                                    <div class="card-body">
+                                <div class="card-content collapse show ">
+                                    <div class="card-body ">
                                         <form class="form"
                                               action="{{route('admin.products.general.store')}}"
                                               method="POST"
-                                              enctype="multipart/form-data">
+                                              enctype="multipart/form-data" >
                                             @csrf
 
 
@@ -91,7 +91,7 @@
                                                         <div class="form-group">
                                                             <label for="projectinput1"> وصف المنتج
                                                             </label>
-                                                            <textarea  name="description" id="ckeditor"
+                                                            <textarea  name="description" id="summernote"
                                                                        class="form-control textarea"
                                                                        placeholder="" rows="5" cols="20">{{old('description')}}</textarea>
 
@@ -206,7 +206,7 @@
                                                         onclick="history.back();">
                                                     <i class="ft-x"></i> تراجع
                                                 </button>
-                                                <button type="submit" class="btn btn-primary">
+                                                <button type="submit" class="btn btn-primary ">
                                                     <i class="la la-check-square-o"></i> تحديث
                                                 </button>
                                             </div>
@@ -225,6 +225,9 @@
 
 @stop
 
+<!-- text editor JS-->
+
+
 @section('script')
 
     <script>
@@ -238,8 +241,7 @@
             });
     </script>
 
-    <script>
-        $('textarea').ckeditor();
-        // $('.textarea').ckeditor(); // if class is prefered.
-    </script>
+
+
+
 @stop

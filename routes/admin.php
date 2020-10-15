@@ -95,8 +95,21 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
             Route::post('price','ProductController@saveProductPrice') -> name('admin.products.price.store');
 
             Route::get('stock/{id}','ProductController@getStock') -> name('admin.products.stock');
-            Route::post('stock','ProductController@saveProductStock') -> name('admin.products.stock.store');
-        });
+            Route::post('stock','ProductController@saveProductStock')->name('admin.products.stock.store');
+
+            Route::get('images/{id}','ProductController@addImages') -> name('admin.products.images');
+            Route::post('images','ProductController@saveProductImages')->name('admin.products.images.store');
+
+            //testing
+            Route::get('upload', 'ProductController@upload');
+            Route::post('upload/store', 'ProductController@stores')->name('upload.store');
+            Route::get('delete', 'ProductController@delete')->name('delete');
+
+            ///testing prof code
+            Route::get('images/{id}','ProductController@addImages') -> name('admin.products.images');
+            Route::post('images','ProductController@saveProductImages') -> name('admin.products.images.store');
+            Route::post('images/db','ProductController@saveProductImagesDB') -> name('admin.products.images.store.db');
+         });
         ################################## end brands    #######################################
 
 

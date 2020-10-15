@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="{{ app() -> getLocale() === 'ar' ? 'rtl' : 'ltr'}}">
+<html class="loading" lang="en" data-textdirection="{{app()->getLocale() === 'ar' ? 'rtl' : 'ltr'}}">
+<!-- = another way of changing the languaes which is best one is:
+= seoncde way is : could in General.php file
+ -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +21,15 @@
     <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
           rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin//plugins/animate/animate.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/plugins/animate/animate.css')}}">
+    <!-- BEGIN VENDOR CSS-->
+
+    <!-- BEGING Theme included stylesheets  for text editor-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/custom.css')}}">
+
+    <!-- END Theme included stylesheets  for text editor-->
+
+
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/vendors.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/weather-icons/climacons.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/fonts/meteocons/style.css')}}">
@@ -33,10 +44,6 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/core/menu/menu-types/vertical-menu.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/pages/chat-application.css')}}">
     <!-- END VENDOR CSS-->
-
-    <!-- summernote1 include libraries(jQuery, bootstrap) -->
-
-
     <!-- BEGIN MODERN CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/app.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/custom-rtl.css')}}">
@@ -51,22 +58,12 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/cryptocoins/cryptocoins.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/extensions/datedropper.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/extensions/timedropper.min.css')}}">
-    <!-- DROP ZONE CSS-->
-{{--    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/file-uploaders/dropzone.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/plugins/file-uploaders/dropzone.css')}}">--}}
-  {{--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />--}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css" />
-
-
-
-{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.0/min/dropzone.min.css">--}}
-
-
 
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/'.getFolder().'/style-rtl.css')}}">
     <!-- END Custom CSS-->
+    <!--  @notify_css adding notification to user, we install a package for this-->
     @notify_css
     @yield('style')
     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
@@ -76,35 +73,24 @@
         }
     </style>
 </head>
-<body class="vertical-layout vertical-menu 2-columns menu-expanded fixed-navbar"
+<body class="vertical-layout vertical-menu 2-columns chat-application menu-expanded fixed-navbar"
       data-open="click" data-menu="vertical-menu" data-col="2-columns">
 <!-- fixed-top-->
-
-<!-- begin header -->
-
 @include('dashboard.includes.header')
-<!-- end header -->
-<!-- begin sidebar -->
+<!-- ////////////////////////////////////////////////////////////////////////////-->
 @include('dashboard.includes.sidebar')
 
-<!-- end sidebar -->
 @yield('content')
-
-<!-- begin footer html -->
+<!-- ////////////////////////////////////////////////////////////////////////////-->
 @include('dashboard.includes.footer')
-
-<!-- end footer -->
-
-
 
 @notify_js
 @notify_render
 
-
-
-<!-- dropzone JS-->
-{{--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>--}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+<!-- TEXT EDITOR JS-->
+<script src="https://cdn.tiny.cloud/1/thehk5qnrhhwhu17siyjabz51wsuzy0e30e9apu8bd4t92tb/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+ {{--<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>--}}
+<script>tinymce.init({selector:'textarea'});</script>
 
 
 <!-- BEGIN VENDOR JS-->
@@ -115,10 +101,6 @@
 <script src="{{asset('assets/admin/vendors/js/tables/datatable/dataTables.buttons.min.js')}}"
         type="text/javascript"></script>
 
-
-
-
-
 <script src="{{asset('assets/admin/vendors/js/forms/toggle/bootstrap-switch.min.js')}}"
         type="text/javascript"></script>
 <script src="{{asset('assets/admin/vendors/js/forms/toggle/bootstrap-checkbox.min.js')}}"
@@ -127,7 +109,6 @@
 <script src="{{asset('assets/admin/js/scripts/forms/switch.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/vendors/js/forms/select/select2.full.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/js/scripts/forms/select/form-select2.js')}}" type="text/javascript"></script>
-
 
 
 
@@ -141,26 +122,24 @@
 <script src="{{asset('assets/admin/vendors/js/forms/icheck/icheck.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/js/scripts/pages/chat-application.js')}}" type="text/javascript"></script>
 <!-- END PAGE VENDOR JS-->
-
 <!-- BEGIN MODERN JS-->
 <script src="{{asset('assets/admin/js/core/app-menu.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/js/core/app.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/admin/js/scripts/customizer.js')}}" type="text/javascript"></script>
 <!-- END MODERN JS-->
-
-
 <!-- BEGIN PAGE LEVEL JS-->
 <script src="{{asset('assets/admin/js/scripts/pages/dashboard-crypto.js')}}" type="text/javascript"></script>
+
 
 <script src="{{asset('assets/admin/js/scripts/tables/datatables/datatable-basic.js')}}"
         type="text/javascript"></script>
 <script src="{{asset('assets/admin/js/scripts/extensions/date-time-dropper.js')}}" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS-->
 
-
-
 <script src="{{asset('assets/admin/js/scripts/forms/checkbox-radio.js')}}" type="text/javascript"></script>
+
 <script src="{{asset('assets/admin/js/scripts/modal/components-modal.js')}}" type="text/javascript"></script>
+
 
 
 <script>
@@ -170,6 +149,7 @@
     });
     $('#meridians2').timeDropper({
         meridians: true,setCurrentTime: false
+
     });
     $('#meridians3').timeDropper({
         meridians: true,
@@ -181,6 +161,7 @@
     });
     $('#meridians5').timeDropper({
         meridians: true,setCurrentTime: false
+
     });
     $('#meridians6').timeDropper({
         meridians: true,setCurrentTime: false

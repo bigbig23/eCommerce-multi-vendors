@@ -1,6 +1,6 @@
 <?php
 
-define('PAGINATION_COUNT',15);
+define('PAGINATION_COUNT',10);
 
 //thiis help us reduce code to change admin panel from righ to left when it comes to arabic and other langauges
 function getFolder(){
